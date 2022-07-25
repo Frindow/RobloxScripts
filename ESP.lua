@@ -1,38 +1,44 @@
-KeyESP = true
-ToolESP = true
-TrapsESP = true
-EnemyESP = true
-PlayerESP = true
-ExitsESP = true
-InteractsESP = false
+---------------------------->> Customization <<----------------------------
 
-map = Instance.new("StringValue")
-map.Parent = workspace
-map.Name = "CurrentMap"
+KeyESP = true						EnemyESP = true
+ToolESP = true						PlayerESP = true
+TrapsESP = true						ExitsESP = true				
+EnemyESP = true						InteractsESP = false
+
+-------------------------------->> Code <<--------------------------------
+----->> Do not edit below this line unless you know what you're doing <<-----
 
 while wait(1) do -- ESP Loop
-	if workspace.Map:FindFirstChild("House") then
-		workspace.CurrentMap.Value = "House"
-	elseif workspace.Map:FindFirstChild("HouseEz") then
-		workspace.CurrentMap.Value = "HouseEz"
-	elseif workspace.Map:FindFirstChild("House 2") then
-		workspace.CurrentMap.Value = "House 2"
-	elseif workspace.Map:FindFirstChild("House 2Ez") then
-		workspace.CurrentMap.Value = "House 2Ez"
-	elseif workspace.Map:FindFirstChild("House 3") then
-		workspace.CurrentMap.Value = "House 3"
-	elseif workspace.Map:FindFirstChild("House 3Ez") then
-		workspace.CurrentMap.Value = "House 3Ez"
-	elseif workspace.Map:FindFirstChild("School") then
-		workspace.CurrentMap.Value = "School"
-	elseif workspace.Map:FindFirstChild("Ski resort") then
-		workspace.CurrentMap.Value = "Ski resort"
-	else
-		workspace.CurrentMap.Value = ""
+	
+	local map = ""
+
+	local function updateMap()
+		if workspace.Map:FindFirstChild("House") then
+			map = "House"
+		elseif workspace.Map:FindFirstChild("HouseEz") then
+			map = "HouseEz"
+		elseif workspace.Map:FindFirstChild("House 2") then
+			map = "House 2"
+		elseif workspace.Map:FindFirstChild("House 2Ez") then
+			map = "House 2Ez"
+		elseif workspace.Map:FindFirstChild("House 3") then
+			map = "House 3"
+		elseif workspace.Map:FindFirstChild("House 3Ez") then
+			map = "House 3Ez"
+		elseif workspace.Map:FindFirstChild("School") then
+			map = "School"
+		elseif workspace.Map:FindFirstChild("Ski resort") then
+			map = "Ski resort"
+		else
+			map = ""
+		end
 	end
-	if workspace.Map:FindFirstChild(workspace.CurrentMap.Value) then
+
+	updateMap()
+	
+	if workspace.Map:FindFirstChild(map) then
 		if KeyESP == true then
-			for i, key in pairs(workspace.Map[workspace.CurrentMap.Value].Tools.Map:GetChildren()) do -- Key ESP
+			for i, key in pairs(workspace.Map[map].Tools.Map:GetChildren()) do -- Key ESP
 				if key.Name:find("key") then
 					if not key:FindFirstChild("Highlight") then
 						local Highlight = Instance.new("Highlight")
@@ -67,7 +73,7 @@ while wait(1) do -- ESP Loop
 
 		else
 
-			for i, key in pairs(workspace.Map[workspace.CurrentMap.Value].Tools.Map:GetChildren()) do
+			for i, key in pairs(workspace.Map[map].Tools.Map:GetChildren()) do
 				if key:FindFirstChild("Highlight") then
 					if key.Name:find("key") then
 						key.Highlight:Destroy()
@@ -77,7 +83,7 @@ while wait(1) do -- ESP Loop
 			end
 		end
 		if ToolESP == true then
-			for i, tool in pairs(workspace.Map[workspace.CurrentMap.Value].Tools.Map:GetChildren()) do -- Tool ESP
+			for i, tool in pairs(workspace.Map[map].Tools.Map:GetChildren()) do -- Tool ESP
 				if not tool.Name:find("key") then
 					if not tool:FindFirstChild("Highlight") then
 						local Highlight = Instance.new("Highlight")
@@ -112,7 +118,7 @@ while wait(1) do -- ESP Loop
 
 		else
 
-			for i, tool in pairs(workspace.Map[workspace.CurrentMap.Value].Tools.Map:GetChildren()) do
+			for i, tool in pairs(workspace.Map[map].Tools.Map:GetChildren()) do
 				if tool:FindFirstChild("Highlight") then
 					if not tool.Name:find("key") then
 						tool.Highlight:Destroy()
@@ -122,7 +128,7 @@ while wait(1) do -- ESP Loop
 			end
 		end
 		if InteractsESP == true then
-			for i, interact in pairs(workspace.Map[workspace.CurrentMap.Value].Interacts:GetChildren()) do -- Interacts ESP
+			for i, interact in pairs(workspace.Map[map].Interacts:GetChildren()) do -- Interacts ESP
 				if not interact:FindFirstChild("Highlight") then
 					local Highlight = Instance.new("Highlight")
 
@@ -134,7 +140,7 @@ while wait(1) do -- ESP Loop
 
 		else
 
-			for i, interact in pairs(workspace.Map[workspace.CurrentMap.Value].Interacts:GetChildren()) do
+			for i, interact in pairs(workspace.Map[map].Interacts:GetChildren()) do
 				if interact:FindFirstChild("Highlight") then
 					interact.Highlight:Destroy()
 				end
@@ -265,7 +271,7 @@ while wait(1) do -- ESP Loop
 			end		
 		end	
 		if TrapsESP == true then
-			for i, exit in pairs(workspace.Map[workspace.CurrentMap.Value].WinPath:GetChildren()) do -- Exits ESP
+			for i, exit in pairs(workspace.Map[map].WinPath:GetChildren()) do -- Exits ESP
 				if not exit:FindFirstChild("Highlight") then
 					local Highlight = Instance.new("Highlight")
 					local Billboard = Instance.new("BillboardGui")
@@ -298,7 +304,7 @@ while wait(1) do -- ESP Loop
 
 		else
 
-			for i, exit in pairs(workspace.Map[workspace.CurrentMap.Value].WinPath:GetChildren()) do
+			for i, exit in pairs(workspace.Map[map].WinPath:GetChildren()) do
 				if exit:FindFirstChild("Highlight") then
 					exit.Highlight:Destroy()
 					exit.Base.BillboardGui:Destroy()
