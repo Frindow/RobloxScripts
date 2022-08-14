@@ -1,9 +1,9 @@
 ---------------------------->> Customization <<----------------------------
 
-AccelerationTime = 0.25						SpecialAmmoSpeed = 55.2
-BulletsPerShot = 1							MaxFireRate = 0.3
-ConsecutiveReloadTime = 0.675				MoveSpeed = 24
-DriveSound = "TankTreads"					ReloadTime = 1
+AccelerationTime = 0.25				pecialAmmoSpeed = 55.2
+BulletsPerShot = 1				MaxFireRate = 0.3
+ConsecutiveReloadTime = 0.675			MoveSpeed = 24
+DriveSound = "TankTreads"			ReloadTime = 1
 ExplodeDirection = Vector3.new(0, 0, 0)		RotationSpeed = 140
 MaxLoadedSpecial = 4
 
