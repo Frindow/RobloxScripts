@@ -1,12 +1,12 @@
 ---------------------------->> Customization <<----------------------------
 
-AccelerationTime = 0.25				SpecialAmmoSpeed = 55.2
-BulletsPerShot = 1				MaxFireRate = 0.3
-ConsecutiveReloadTime = 0.675			MoveSpeed = 24
-DriveSound = "TankTreads"			ReloadTime = 1
+AccelerationTime = 0.25						SpecialAmmoSpeed = 55.2
+BulletsPerShot = 1							MaxFireRate = 0.3
+ConsecutiveReloadTime = 0.675				MoveSpeed = 24
+DriveSound = "TankTreads"					ReloadTime = 1
 ExplodeDirection = Vector3.new(0, 0, 0)		RotationSpeed = 140
-MaxLoadedSpecial = 4				TeleportingBase = "Red"
-TeleportOnExecute = true
+MaxLoadedSpecial = 4						TeleportingBase = "Red"
+TeleportOnExecute = false
 
 for i, tank in pairs(workspace.Tanks:GetChildren()) do
 	if tank.Name.find(game.Players.LocalPlayer.Name, game.Players.LocalPlayer.Name) then
@@ -29,22 +29,44 @@ for i, tank in pairs(workspace.Tanks:GetChildren()) do
 --[[		for i, ability in pairs(tank.Abilities:GetChildren()) do
 			ability.CooldownTime.Value = AbilityCooldown
 		end--]]
+		
+		if TeleportOnExecute == true then
+			if TeleportingBase == "Red" then
+				tank.Settings.Position.Value = Vector3.new(workspace.ToyMap.SpawnZones["Bright red"].WorldPivot.X, workspace.ToyMap.SpawnZones["Bright red"].WorldPivot.Y, workspace.ToyMap.SpawnZones["Bright red"].WorldPivot.Z)
+			else
+				tank.Settings.Position.Value = Vector3.new(workspace.ToyMap.SpawnZones["Bright blue"].WorldPivot.X, workspace.ToyMap.SpawnZones["Bright blue"].WorldPivot.Y, workspace.ToyMap.SpawnZones["Bright blue"].WorldPivot.Z)
+			end		
+		end
 	end
-	
-	if TeleportOnExecute == true then
-		for i, map in pairs(workspace:GetChildren()) do
-			if map.Name.find(map.Name, "Map") then
+end
+			
+--[[
+			
+if TeleportOnExecute == true then
+	for i, map in pairs(workspace:GetChildren()) do
+		if map.Name.find(map.Name, "Map") then
+			if not map.Name == "OnboardingMaps" then
 				if TeleportingBase == "Red" then
-					tank.Settings.Position.Value = Vector3.new(29.5, 14.5, -280)
+					tank.Settings.Position.Value = Vector3.new(map.RedBase.WorldPivot.X, map.RedBase.WorldPivot.Y, map.RedBase.WorldPivot.Z)
 				else
-					tank.Settings.Position.Value = Vector3.new(29.5, 14.5, 306)
-				end
+					tank.Settings.Position.Value = Vector3.new(map.BlueBase.WorldPivot.X, map.BlueBase.WorldPivot.Y, map.BlueBase.WorldPivot.Z)
+				end					
 			end
 		end
 	end
 end
 
---[[
+if NoClip == true then
+	for i, part in pairs(workspace:GetDescendants()) do
+		if part:IsA("BasePart") then
+			if NoClip == true then
+				part.CanCollide = false
+			else
+				part.CanCollide = true
+			end
+		end			
+	end
+end
 
 UserInputService = game:GetService("UserInputService")
 
