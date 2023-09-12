@@ -1,12 +1,12 @@
 ---------------------------->> Customization <<----------------------------
 
-AccelerationTime = 0.25						SpecialAmmoSpeed = 55.2
-BulletsPerShot = 1							MaxFireRate = 0.3
-ConsecutiveReloadTime = 0.675				MoveSpeed = 24
-DriveSound = "TankTreads"					ReloadTime = 1
+AccelerationTime = 0.25				SpecialAmmoSpeed = 55.2
+BulletsPerShot = 1				MaxFireRate = 0.3
+ConsecutiveReloadTime = 0.675			MoveSpeed = 24
+DriveSound = "TankTreads"			ReloadTime = 1
 ExplodeDirection = Vector3.new(0, 0, 0)		RotationSpeed = 140
-MaxLoadedSpecial = 4						TeleportingBase = "Red"
-TeleportOnExecute = false					RemoveObjects = false
+MaxLoadedSpecial = 4				TeleportingBase = "Red"
+TeleportOnExecute = false			RemoveObjects = false
 
 for i, tank in pairs(workspace.Tanks:GetChildren()) do
 	if tank.Name.find(game.Players.LocalPlayer.Name, game.Players.LocalPlayer.Name) then
